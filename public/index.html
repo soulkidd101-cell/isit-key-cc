@@ -1,0 +1,44 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ISIT 300 Notes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <main class="container">
+    <header>
+      <h1>ISIT 300 Dev Baseline</h1>
+      <p>Personal notes dashboard.</p>
+    </header>
+
+    <section class="form-section">
+      <h2>Add a Note</h2>
+
+      <form id="note-form">
+        <label for="note-body">Note</label>
+        <textarea
+          id="note-body"
+          name="body"
+          placeholder="Enter your note..."
+          required
+        ></textarea>
+
+        <button type="submit">Add Note</button>
+      </form>
+    </section>
+
+    <section class="notes-section">
+      <h2>Your Notes</h2>
+      <div id="notes-list" class="notes-grid"></div>
+    </section>
+
+    <p id="status-message" aria-live="polite"></p>
+  </main>
+
+</body>
+</html>

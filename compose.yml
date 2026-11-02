@@ -1,0 +1,40 @@
+
+
+services:
+  app:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - ./data:/workspace/data
+      - node_modules:/workspace/node_modules
+    ports:
+      - "3010:3000"
+    command: ["bun", "--watch", "src/index.ts"]
+
+  caddy:
+    image: caddy:2
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./certs:/certs:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+  
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/usr/share/nginx/html:ro
+
+
+volumes:
+  node_modules:
+  caddy_data:
+  caddy_config:
